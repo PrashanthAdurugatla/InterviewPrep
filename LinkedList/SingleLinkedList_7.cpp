@@ -37,17 +37,16 @@ void LinkedList:: createlist(int data){
 
 bool LinkedList::isLoop(node *temp){
   node *p=temp;
-  node *q=temp->next->next;
-  while(temp){
-    if(p==q){
-      return true;
-    }
-    temp=temp->next;
-  }
-  return false;
-}
-
-
+  node *q=temp;
+  do{
+    p=p->next;
+    q=q->next;
+    q=(q!=NULL)?q->next:NULL;
+  }while(p!=q && p && q);
+  if(p==q)
+    return 1;
+  return 0;
+  
 void LinkedList::displaylist(node *temp){
   while(temp){
     cout<<temp->data<<"|";
